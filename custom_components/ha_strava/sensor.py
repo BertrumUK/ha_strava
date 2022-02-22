@@ -164,7 +164,7 @@ class StravaSummaryStatsSensor(Entity):
 
         if self._metric == CONF_SENSOR_DISTANCE:
             distance = (
-                f"{round(self._data[CONF_SENSOR_DISTANCE]/1000,2)} {LENGTH_KILOMETERS}"
+                f"{round(self._data[CONF_SENSOR_DISTANCE]*FACTOR_METER_TO_MILE,2)} {LENGTH_MILES}"
             )
 
             if not self.hass.config.units.is_metric:
@@ -322,7 +322,7 @@ class StravaStatsSensor(Entity):
 
         if metric == CONF_SENSOR_DISTANCE:
             distance = (
-                f"{round(self._data[CONF_SENSOR_DISTANCE]/1000,2)} {LENGTH_KILOMETERS}"
+                f"{round(self._data[CONF_SENSOR_DISTANCE]*FACTOR_METER_TO_MILE,2)} {LENGTH_MILES}"
             )
 
             if not self.hass.config.units.is_metric:
@@ -348,7 +348,7 @@ class StravaStatsSensor(Entity):
             )
 
         if metric == CONF_SENSOR_SPEED:
-            speed = f"{round((self._data[CONF_SENSOR_DISTANCE]/1000)/(self._data[CONF_SENSOR_MOVING_TIME]/3600),2)} {SPEED_KILOMETERS_PER_HOUR}"
+            speed = f"{round((self._data[CONF_SENSOR_DISTANCE]*FACTOR_METER_TO_MILE)/(self._data[CONF_SENSOR_MOVING_TIME]/3600),2)} {SPEED_MILES_PER_HOUR}"
 
             if not self.hass.config.units.is_metric:
                 speed = f"{round((self._data[CONF_SENSOR_DISTANCE]*FACTOR_METER_TO_MILE)/(self._data[CONF_SENSOR_MOVING_TIME]/3600),2)} {SPEED_MILES_PER_HOUR}"
